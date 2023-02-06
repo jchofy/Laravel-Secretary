@@ -10,4 +10,5 @@ class Subject extends Model
     use HasFactory;
     public $timestamps = false;
     protected $fillable = ["name", "weekly_hours", "total_hours"];
+    protected $primaryKey = 'id';
 }

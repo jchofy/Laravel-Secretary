@@ -9,5 +9,6 @@ class Student extends Model
 {
     use HasFactory;
     public $timestamps = false;
-    protected $fillable = ["name", "surnames", "sex", "age"];
+    protected $fillable = ["name", "surname", "sex", "age"];
+    protected $primaryKey = 'id';
 }

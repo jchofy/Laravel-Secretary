@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('subjects', function (Blueprint $table) {
-            $table->bigIncrements('subject_id');
+            $table->bigIncrements('id');
             $table->string('name');
             $table->integer('weekly_hours');
             $table->integer('total_hours');
