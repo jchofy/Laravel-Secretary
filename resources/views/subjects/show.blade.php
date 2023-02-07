@@ -34,7 +34,14 @@
             <td class="text-center">{{$subject->name}}</td>
             <td class="text-center">{{$subject->weekly_hours}}</td>
             <td class="text-center">{{$subject->total_hours}}</td>
-            <td class="text-center"><a href="{{route('subject.edit',$subject->id)}}"><button class="btn btn-warning">Modificar</button></a></td>
+            <td class="text-center"><a href="{{route('subject.edit',$subject->id)}}"><button class="btn btn-warning">Modify</button></a></td>
+            <td>
+                <form action="{{ route('subject.destroy', $subject->id) }}" method="POST">
+                    @csrf
+                    @method("DELETE")
+                    <input type="submit" class="btn btn-danger" value="Delete">
+                </form>
+            </td>
             </tr>
         </tbody>
         @endforeach

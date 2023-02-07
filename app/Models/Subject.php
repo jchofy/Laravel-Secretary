@@ -11,4 +11,8 @@ class Subject extends Model
     public $timestamps = false;
     protected $fillable = ["name", "weekly_hours", "total_hours"];
     protected $primaryKey = 'id';
+
+    public function students(){
+        return $this->belongsToMany('App\Models\Subject','enrollments', 'student_id', 'subject_id');
+    }
 }

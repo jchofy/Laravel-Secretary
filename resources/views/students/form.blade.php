@@ -13,12 +13,8 @@
 @section("header","Inserción de Estudiantes")
 
 @section("content")
-    @isset($student)
         <form action="{{ route('student.update', ['student' => $student->id])}}" method="POST">
         @method("PATCH")
-    @else
-        <form action="{{ route('student.store') }}" method="POST">
-    @endisset
         @csrf
         <div class="d-flex justify-content-center">
             <div  class="w-50 m-3">
@@ -37,7 +33,7 @@
             </div>
         </div>
         <div class="d-flex justify-content-center">
-            <input type="submit" class="btn btn-success m-3">
+            <input type="submit" value="Send" class="btn btn-success m-3">
         </div>
         </form>
 @endsection

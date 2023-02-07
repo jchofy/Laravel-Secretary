@@ -15,7 +15,7 @@ class SubjectController extends Controller
 
     public function create()
     {
-        
+        return view('subjects.create');
     }
 
     public function store(Request $r)
@@ -50,6 +50,8 @@ class SubjectController extends Controller
 
     public function destroy($id)
     {
-        
+        $s = Subject::find($id);
+        $s->delete();
+        return redirect()->route('subject.index');
     }
 }

@@ -35,11 +35,14 @@
             <td class="text-center">{{$subject->name}}</td>
             <td class="text-center">{{$subject->weekly_hours}}</td>
             <td class="text-center">{{$subject->total_hours}}</td>
-            <td><a href="{{route('subject.show',$subject->id)}}"><button class="btn btn-primary">Ver</button></a></td>
+            <td><a href="{{route('subject.show',$subject->id)}}"><button class="btn btn-primary">Show</button></a></td>
             </tr>
         </tbody>
         @endforeach
     </table>
+    <div class="d-flex justify-content-center">
+        <a href="{{route('subject.create')}}"><button class="btn btn-success">Add Subject +</button></a>
+    </div>
 @endsection
 
 

@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
- Route::get('/', function () {
-     return view('welcome');
- });
+Route::get('/','StudentController@index' );
 
 Route::get('students', 'StudentController@index')->name('student.index');
 
@@ -26,6 +24,10 @@ Route::post('student', 'StudentController@store')->name('student.store');
 Route::get('student/{student}/edit', 'StudentController@edit')->name('student.edit');
 
 Route::patch('student/{student}', 'StudentController@update')->name('student.update');
+
+Route::delete('student/{student}', 'StudentController@destroy')->name('student.destroy');
+
+Route::get('student','StudentController@create')->name('student.create');
 
 // Route::post('/borrar', 'StudentController@borrar')->name('borrar');
 
@@ -46,3 +48,8 @@ Route::post('subject', 'SubjectController@store')->name('subject.store');
 Route::get('subject/{subject}/edit', 'SubjectController@edit')->name('subject.edit');
 
 Route::patch('subject/{subject}', 'SubjectController@update')->name('subject.update');
+
+Route::delete('subject/{subject}', 'SubjectController@destroy')->name('subject.destroy');
+
+Route::get('subject','SubjectController@create')->name('subject.create');
+
