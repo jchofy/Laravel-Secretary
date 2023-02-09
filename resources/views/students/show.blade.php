@@ -61,14 +61,16 @@
             @foreach($subjects as $subject)
             <tr>
                 <td class="text-center">{{$subject->name}}</td>
-                <td class="text-center">{{$subject->note}}</td>
-                <td class="text-center">{{$subject->evaluation_date}}</td>
+                <td class="text-center">{{($subject->note==null)? 'Not rated':$subject->note }}</td>
+                <td class="text-center">{{($subject->evaluation_date==null)? 'Not rated':$subject->note }}</td>
             </tr>
             @endforeach
         </table>
         @endif
         @if($subjects->count()==0)
-            <p class="text-center mt-3">The student {{$student['name']}} haven't subjects</p>
+        <div class="alert alert-danger" role="alert">
+        The student {{$student['name']}} haven't subjects
+        </div>
         @endif
     </div>
     @endsection

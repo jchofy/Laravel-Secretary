@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Subject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SubjectController extends Controller
 {
@@ -15,6 +16,7 @@ class SubjectController extends Controller
 
     public function create()
     {
+        
         return view('subjects.create');
     }
 
@@ -29,7 +31,13 @@ class SubjectController extends Controller
     {
         $subject = Subject::find($id);
         $data['subject'] = $subject;
-        return view('subjects.show', ['data'=>$data]);
+        $subjectsEnrollments = DB::table('enrollments')
+            ->join('subjects', 'enrollments.subject_id', '=', 'subjects.id')
+            ->join('students','enrollments.student_id', '=', 'students.id')
+            ->select('students.name','students.surname', 'students.sex', 'students.age')
+            ->where('enrollments.student_id','=',$id)
+            ->get();
+        return view('subjects.show', ['data'=>$data, 'students'=>$subjectsEnrollments]);
     }
 
     public function edit($id)

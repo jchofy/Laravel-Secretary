@@ -17,7 +17,7 @@
 @section("content")
 
 
-    <table class="table">
+    <table class="table mt-5">
         <thead>
             <tr>
             <th class="text-center" scope="col">#</th>

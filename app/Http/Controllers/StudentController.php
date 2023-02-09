@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -16,13 +17,33 @@ class StudentController extends Controller
 
     public function create()
     {
-        return view('students.create');
+        $subjects = Subject::all();
+        return view('students.create',['subjects'=>$subjects]);
     }
 
     public function store(Request $r)
     {
+        $subjects = $r->input('asignaturas');
+
+        $name = $r->input('name');    
+        
         $s = new Student($r->all());
         $s->save();
+
+        $student_id = DB::table('students')->where('name', $name)->value('id');
+
+        foreach($subjects as $subject){
+          
+            DB::table('enrollments')->insert(
+                array(
+                       'student_id' => $student_id, 
+                       'subject_id' => $subject,
+                       'note' => null,
+                       'evaluation_date' => null
+                )
+           );
+        }
+
         return redirect()->route('student.index');
     }
 

@@ -15,14 +15,15 @@
 
 @section("content")
 
-<div class="d-flex justify-content-center">
-    <table class="table w-50">
+<div class="d-flex justify-content-center flex-column align-items-center">
+    <table class="table w-50 mt-5">
         <thead>
             <tr>
             <th class="text-center" scope="col">#</th>
             <th class="text-center" scope="col">Name</th>
             <th class="text-center" scope="col">Weekly Hours</th>
             <th class="text-center" scope="col">Total Hours</th>
+            <th class="text-center" scope="col"></th>
             <th class="text-center" scope="col"></th>
      
             </tr>
@@ -46,6 +47,30 @@
         </tbody>
         @endforeach
     </table>
+    <h3 class="text-center mt-4">Student's enrolled</h3>
+    @if($students->count()>0)
+        <table class="table w-50 mt-3">
+            <tr>
+                <th class="text-center">Name</th>
+                <th class="text-center">Surname</th>
+                <th class="text-center">Sex</th>
+                <th class="text-center">Age</th>
+            </tr>
+            @foreach($students as $student)
+            <tr>
+                <td class="text-center">{{$student->name}}</td>
+                <td class="text-center">{{$student->surname}}</td>
+                <td class="text-center">{{$student->sex}}</td>
+                <td class="text-center">{{$student->age}}</td>
+            </tr>
+            @endforeach
+        </table>
+        @endif
+    @if($students->count()==0)
+        <div class="alert alert-danger" role="alert">
+        The subject {{$subject['name']}} haven't students
+        </div>
+    @endif
 </div>
 
 @endsection

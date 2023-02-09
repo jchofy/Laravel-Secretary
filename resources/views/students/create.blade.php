@@ -11,13 +11,13 @@
 </head>
 
 <body>
-@extends("layouts.master")
+    @extends("layouts.master")
 
-@section("title","Inserción de Estudiantes")
+    @section("title","Inserción de Estudiantes")
 
-@section("header","Inserción de Estudiantes")
+    @section("header","Inserción de Estudiantes")
 
-@section("content")
+    @section("content")
     <div class="d-flex justify-content-center">
         <form action="{{route('student.store')}}" class="w-50 mt-5" method="post">
             @csrf
@@ -41,6 +41,16 @@
             @error('age')
             <span class="text-danger">{{$message}}</span>
             @enderror
+            <p>Asignaturas Matriculadas<br><span style="font-size:10pt">(Seleccione las asignaturas en la que se va a matricular este alumno)</span></p>
+
+
+            <div class="d-flex flex-column">
+                @foreach ($subjects as $subject)
+                <label>
+                    <input type="checkbox" name="asignaturas[]" class="me-2" value="{{ $subject->id }}">{{$subject->name}}
+                </label>
+                @endforeach
+            </div>
             <div class="d-flex justify-content-center mt-3">
                 <input class="btn btn-primary w-25" type="submit" value="Send">
             </div>

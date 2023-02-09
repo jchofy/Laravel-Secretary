@@ -19,7 +19,7 @@
     @section("content")
 
 
-    <table class="table">
+    <table class="table mt-5">
         <thead>
             <tr>
                 <th class="text-center" scope="col">#</th>
@@ -27,7 +27,6 @@
                 <th class="text-center" scope="col">Surname</th>
                 <th class="text-center" scope="col">Sex</th>
                 <th class="text-center" scope="col">Age</th>
-                <th class="text-center" scope="col"></th>
                 <th class="text-center" scope="col"></th>
             </tr>
         </thead>
@@ -49,8 +48,6 @@
         <a href="{{route('student.create')}}"><button class="btn btn-success">Add Student +</button></a>
     </div>
     @endsection
-
-
 </body>
 
 </html>
