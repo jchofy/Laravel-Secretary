@@ -57,12 +57,14 @@
                 <th class="text-center">Name</th>
                 <th class="text-center">Note</th>
                 <th class="text-center">Evaluation Date</th>
+                <th class="text-center"></th>
             </tr>
             @foreach($subjects as $subject)
             <tr>
                 <td class="text-center">{{$subject->name}}</td>
                 <td class="text-center">{{($subject->note==null)? 'Not rated':$subject->note }}</td>
-                <td class="text-center">{{($subject->evaluation_date==null)? 'Not rated':$subject->note }}</td>
+                <td class="text-center">{{($subject->evaluation_date==null)? 'Not rated':$subject->evaluation_date }}</td>
+                <td class="text-center"><a href="{{route('enrollment.edit',['student_id'=>$data['student']->id,'subject_id'=>$subject->subject_id])}}"><button class="btn btn-warning">Modify</button></a></td>
             </tr>
             @endforeach
         </table>

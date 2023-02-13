@@ -35,7 +35,7 @@ class SubjectController extends Controller
             ->join('subjects', 'enrollments.subject_id', '=', 'subjects.id')
             ->join('students','enrollments.student_id', '=', 'students.id')
             ->select('students.name','students.surname', 'students.sex', 'students.age')
-            ->where('enrollments.student_id','=',$id)
+            ->where('enrollments.subject_id','=',$id)
             ->get();
         return view('subjects.show', ['data'=>$data, 'students'=>$subjectsEnrollments]);
     }

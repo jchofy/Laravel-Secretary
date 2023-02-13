@@ -12,36 +12,38 @@ class StudentController extends Controller
     public function index()
     {
         $studentList = Student::all();
-        return view('students.all',['studentList'=>$studentList]);
+        return view('students.all', ['studentList' => $studentList]);
     }
 
     public function create()
     {
         $subjects = Subject::all();
-        return view('students.create',['subjects'=>$subjects]);
+        return view('students.create', ['subjects' => $subjects]);
     }
 
     public function store(Request $r)
     {
         $subjects = $r->input('asignaturas');
 
-        $name = $r->input('name');    
-        
+        $name = $r->input('name');
+
         $s = new Student($r->all());
         $s->save();
 
         $student_id = DB::table('students')->where('name', $name)->value('id');
 
-        foreach($subjects as $subject){
-          
-            DB::table('enrollments')->insert(
-                array(
-                       'student_id' => $student_id, 
-                       'subject_id' => $subject,
-                       'note' => null,
-                       'evaluation_date' => null
-                )
-           );
+        if (isset($subjects)) {
+            foreach ($subjects as $subject) {
+
+                DB::table('enrollments')->insert(
+                    array(
+                        'student_id' => $student_id,
+                        'subject_id' => $subject,
+                        'note' => null,
+                        'evaluation_date' => null
+                    )
+                );
+            }
         }
 
         return redirect()->route('student.index');
@@ -53,11 +55,11 @@ class StudentController extends Controller
         $data['student'] = $student;
         $studentEnrollments = DB::table('enrollments')
             ->join('subjects', 'enrollments.subject_id', '=', 'subjects.id')
-            ->join('students','enrollments.student_id', '=', 'students.id')
-            ->select('subjects.name','enrollments.note','enrollments.evaluation_date')
-            ->where('enrollments.student_id','=',$id)
+            ->join('students', 'enrollments.student_id', '=', 'students.id')
+            ->select('subjects.name', 'enrollments.note', 'enrollments.evaluation_date', 'enrollments.student_id', 'enrollments.subject_id')
+            ->where('enrollments.student_id', '=', $id)
             ->get();
-        return view('students.show', ['data'=>$data,'subjects'=>$studentEnrollments]);
+        return view('students.show', ['data' => $data, 'subjects' => $studentEnrollments]);
     }
 
     public function edit($id)

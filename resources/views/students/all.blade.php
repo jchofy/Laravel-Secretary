@@ -18,6 +18,8 @@
 
     @section("content")
 
+    <h2 class="text-center mt-5 mb-4">All Students</h2>
+
 
     <table class="table mt-5">
         <thead>
@@ -44,7 +46,7 @@
         </tbody>
         @endforeach
     </table>
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center mt-5">
         <a href="{{route('student.create')}}"><button class="btn btn-success">Add Student +</button></a>
     </div>
     @endsection

@@ -29,16 +29,6 @@ Route::delete('student/{student}', 'StudentController@destroy')->name('student.d
 
 Route::get('student','StudentController@create')->name('student.create');
 
-// Route::post('/borrar', 'StudentController@borrar')->name('borrar');
-
-// Route::get('añadir', 'StudentController@añadir')->name('añadir');
-
-// Route::post('añadirActor', 'StudentController@añadirActor')->name('añadirActor');
-
-// Route::get('ordenarAsc', 'StudentController@ordenarAsc')->name('ordenarAsc');
-
-// Route::get('ordenarDesc', 'StudentController@ordenarDesc')->name('ordenarDesc');
-
 Route::get('subjects', 'SubjectController@index')->name('subject.index');
 
 Route::get('subject/{subject}', 'SubjectController@show')->name('subject.show');
@@ -53,3 +43,6 @@ Route::delete('subject/{subject}', 'SubjectController@destroy')->name('subject.d
 
 Route::get('subject','SubjectController@create')->name('subject.create');
 
+Route::get('enrollment','EnrollmentController@edit')->name('enrollment.edit');
+
+Route::patch('enrollment/{enrollment}', 'EnrollmentController@update')->name('enrollment.update');
